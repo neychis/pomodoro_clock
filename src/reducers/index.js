@@ -1,4 +1,4 @@
-import { defaultState, Status } from "./constants";
+import { defaultState, Status, Period } from "./constants";
 import countdownActions from "../actions/countdown";
 import breakActions from "../actions/break";
 import sessionActions from "../actions/session";
@@ -32,6 +32,12 @@ const rootReducer = (state = defaultState, action) => {
         ...state,
         breakSeconds: state.breakSeconds - 1
       };
+    case breakActions.START_BREAK:
+      return {
+        ...state,
+        secondsLeft: state.breakSeconds,
+        currentPeriod: Period.BREAK
+      };
     case sessionActions.INCREMENT_SESSION:
       return {
         ...state,
@@ -41,6 +47,12 @@ const rootReducer = (state = defaultState, action) => {
       return {
         ...state,
         sessionSeconds: state.sessionSeconds - 1
+      };
+    case sessionActions.START_SESSION:
+      return {
+        ...state,
+        secondsLeft: state.sessionSeconds,
+        currentPeriod: Period.SESSION
       };
     default:
       return state;

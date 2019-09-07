@@ -33,6 +33,11 @@ export const decSession = () => {
     type: sessionActions.DECREMENT_SESSION
   };
 };
+export const startSession = () => {
+  return {
+    type: sessionActions.START_SESSION
+  };
+};
 
 export const incBreak = () => {
   return {
@@ -42,5 +47,10 @@ export const incBreak = () => {
 export const decBreak = () => {
   return {
     type: breakActions.DECREMENT_BREAK
+  };
+};
+export const startBreak = () => {
+  return {
+    type: breakActions.START_BREAK
   };
 };

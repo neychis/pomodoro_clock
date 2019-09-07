@@ -9,11 +9,22 @@ const mapStateToProps = state => {
 };
 let timer = null;
 
+const startTimer = ({ dispatch, sessionSeconds }) => {
+  timer = setInterval(() => {
+    if (sessionSeconds > 0) {
+      dispatch(actions.tick());
+      sessionSeconds--;
+    } else {
+      clearInterval(timer);
+    }
+  }, 100);
+};
+
 const mapDispatchToProps = dispatch => {
   return {
-    startCountdown: () => {
+    startCountdown: ({ sessionSeconds, breakSeconds }) => {
       clearInterval(timer);
-      timer = setInterval(() => dispatch(actions.tick()), 100);
+      startTimer({ dispatch, sessionSeconds });
       dispatch(actions.startCountdown());
     },
     tick: () => {

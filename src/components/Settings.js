@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../styles/settings.scss";
 
 export default class Settings extends React.Component {
@@ -27,3 +28,10 @@ export default class Settings extends React.Component {
     );
   }
 }
+
+Settings.propTypes = {
+  inc: PropTypes.func.isRequired,
+  dec: PropTypes.func.isRequired,
+  headingText: PropTypes.string,
+  value: PropTypes.number.isRequired
+};

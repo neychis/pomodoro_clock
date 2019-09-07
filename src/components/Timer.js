@@ -1,11 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Status } from "../reducers/constants";
 import "../styles/timer.scss";
 
 export default class Timer extends React.Component {
   toggle = () => {
     if (this.props.status === Status.PAUSED) {
-      this.props.startCountdown();
+      this.props.startCountdown({
+        sessionSeconds: this.props.secondsLeft,
+        breakSeconds: this.props.breakSeconds
+      });
     } else {
       this.props.stopCountdown();
     }
@@ -41,4 +45,9 @@ export default class Timer extends React.Component {
   }
 }
 
-Timer.propTypes = {};
+Timer.propTypes = {
+  secondsLeft: PropTypes.number.isRequired,
+  startCountdown: PropTypes.func.isRequired,
+  stopCountdown: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
+};
