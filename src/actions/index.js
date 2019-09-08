@@ -4,17 +4,17 @@ import sessionActions from "./session.js";
 
 export const startCountdown = () => {
   return {
-    type: countdownActions.START_COUNTDOWN
+    type: countdownActions.START
   };
 };
 export const stopCountdown = () => {
   return {
-    type: countdownActions.STOP_COUNTDOWN
+    type: countdownActions.STOP
   };
 };
 export const resetCountdown = () => {
   return {
-    type: countdownActions.RESET_COUNTDOWN
+    type: countdownActions.RESET
   };
 };
 export const tick = () => {
@@ -22,35 +22,40 @@ export const tick = () => {
     type: countdownActions.TICK
   };
 };
+export const updateCountdown = () => {
+  return {
+    type: countdownActions.UPDATE
+  };
+};
 
 export const incSession = () => {
   return {
-    type: sessionActions.INCREMENT_SESSION
+    type: sessionActions.INCREMENT
   };
 };
 export const decSession = () => {
   return {
-    type: sessionActions.DECREMENT_SESSION
+    type: sessionActions.DECREMENT
   };
 };
 export const startSession = () => {
   return {
-    type: sessionActions.START_SESSION
+    type: sessionActions.START
   };
 };
 
 export const incBreak = () => {
   return {
-    type: breakActions.INCREMENT_BREAK
+    type: breakActions.INCREMENT
   };
 };
 export const decBreak = () => {
   return {
-    type: breakActions.DECREMENT_BREAK
+    type: breakActions.DECREMENT
   };
 };
 export const startBreak = () => {
   return {
-    type: breakActions.START_BREAK
+    type: breakActions.START
   };
 };

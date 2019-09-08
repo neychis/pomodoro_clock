@@ -1,14 +1,16 @@
 //Here will be your action name constants and action creators
-const START_COUNTDOWN = "START_COUNTDOWN";
+const START = "START";
 const TICK = "TICK";
-const STOP_COUNTDOWN = "STOP_COUNTDOWN";
-const RESET_COUNTDOWN = "RESET_COUNTDOWN";
+const STOP = "STOP";
+const RESET = "RESET";
+const UPDATE = "UPDATE";
 
 const countdownActions = {
-  START_COUNTDOWN,
+  START,
   TICK,
-  STOP_COUNTDOWN,
-  RESET_COUNTDOWN
+  STOP,
+  RESET,
+  UPDATE
 };
 
 export default countdownActions;

@@ -3,9 +3,11 @@ import countdownActions from "../actions/countdown";
 import breakActions from "../actions/break";
 import sessionActions from "../actions/session";
 
+const secondsInMinute = 60;
+
 const rootReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case countdownActions.START_COUNTDOWN:
+    case countdownActions.START:
       return {
         ...state,
         status: Status.ACTIVE
@@ -15,43 +17,62 @@ const rootReducer = (state = defaultState, action) => {
         ...state,
         secondsLeft: state.secondsLeft - 1
       };
-    case countdownActions.STOP_COUNTDOWN:
+    case countdownActions.STOP:
       return {
         ...state,
-        status: Status.PAUSED
+        status: Status.STOPED
       };
-    case countdownActions.RESET_COUNTDOWN:
+    case countdownActions.UPDATE:
+      return {
+        ...state,
+        secondsLeft: state.sessionMinutes * secondsInMinute
+      };
+    case countdownActions.RESET:
       return { ...defaultState };
-    case breakActions.INCREMENT_BREAK:
+    case breakActions.INCREMENT:
+      if (state.breakMinutes === 60) {
+        return state;
+      }
       return {
         ...state,
-        breakSeconds: state.breakSeconds + 1
+        breakMinutes: state.breakMinutes + 1
       };
-    case breakActions.DECREMENT_BREAK:
+    case breakActions.DECREMENT:
+      if (state.breakMinutes > 1) {
+        return {
+          ...state,
+          breakMinutes: state.breakMinutes - 1
+        };
+      } else {
+        return state;
+      }
+    case breakActions.START:
       return {
         ...state,
-        breakSeconds: state.breakSeconds - 1
-      };
-    case breakActions.START_BREAK:
-      return {
-        ...state,
-        secondsLeft: state.breakSeconds,
+        secondsLeft: state.breakMinutes * secondsInMinute,
         currentPeriod: Period.BREAK
       };
-    case sessionActions.INCREMENT_SESSION:
+    case sessionActions.INCREMENT:
+      if (state.sessionMinutes === 60) {
+        return state;
+      }
       return {
         ...state,
-        sessionSeconds: state.sessionSeconds + 1
+        sessionMinutes: state.sessionMinutes + 1
       };
-    case sessionActions.DECREMENT_SESSION:
+    case sessionActions.DECREMENT:
+      if (state.sessionMinutes > 1) {
+        return {
+          ...state,
+          sessionMinutes: state.sessionMinutes - 1
+        };
+      } else {
+        return state;
+      }
+    case sessionActions.START:
       return {
         ...state,
-        sessionSeconds: state.sessionSeconds - 1
-      };
-    case sessionActions.START_SESSION:
-      return {
-        ...state,
-        secondsLeft: state.sessionSeconds,
+        secondsLeft: state.sessionMinutes * secondsInMinute,
         currentPeriod: Period.SESSION
       };
     default:

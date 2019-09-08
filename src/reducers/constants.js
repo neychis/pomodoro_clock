@@ -1,6 +1,7 @@
 export const Status = {
   PAUSED: "paused",
-  ACTIVE: "active"
+  ACTIVE: "active",
+  STOPED: "stoped"
 };
 Object.freeze(Status);
 
@@ -12,8 +13,8 @@ Object.freeze(Period);
 
 export const defaultState = {
   status: Status.PAUSED,
-  secondsLeft: 60,
-  breakSeconds: 15,
-  sessionSeconds: 45,
+  secondsLeft: 25 * 60,
+  breakMinutes: 5,
+  sessionMinutes: 25,
   currentPeriod: Period.SESSION
 };

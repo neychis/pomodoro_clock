@@ -7,35 +7,22 @@ import "../styles/index.scss";
 const mapStateToProps = state => {
   return { ...state };
 };
-let timer = null;
-
-const startTimer = ({ dispatch, sessionSeconds }) => {
-  timer = setInterval(() => {
-    if (sessionSeconds > 0) {
-      dispatch(actions.tick());
-      sessionSeconds--;
-    } else {
-      clearInterval(timer);
-    }
-  }, 100);
-};
 
 const mapDispatchToProps = dispatch => {
   return {
-    startCountdown: ({ sessionSeconds, breakSeconds }) => {
-      clearInterval(timer);
-      startTimer({ dispatch, sessionSeconds });
+    startCountdown: () => {
       dispatch(actions.startCountdown());
     },
     tick: () => {
       dispatch(actions.tick());
     },
     stopCountdown: () => {
-      clearInterval(timer);
       dispatch(actions.stopCountdown());
     },
+    updateCountdown: () => {
+      dispatch(actions.updateCountdown());
+    },
     resetCountdown: () => {
-      clearInterval(timer);
       dispatch(actions.resetCountdown());
     },
     incBreak: () => {
@@ -44,11 +31,17 @@ const mapDispatchToProps = dispatch => {
     decBreak: () => {
       dispatch(actions.decBreak());
     },
+    startBreak: () => {
+      dispatch(actions.startBreak());
+    },
     incSession: () => {
       dispatch(actions.incSession());
     },
     decSession: () => {
       dispatch(actions.decSession());
+    },
+    startSession: () => {
+      dispatch(actions.startSession());
     }
   };
 };
